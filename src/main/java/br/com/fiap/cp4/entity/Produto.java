@@ -1,4 +1,4 @@
-package br.com.fiap.cp4.model;
+package br.com.fiap.cp4.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
