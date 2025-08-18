@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.fiap.cp4.dto.ProdutoRequest;
 import br.com.fiap.cp4.dto.ProdutoResponse;
+import br.com.fiap.cp4.entity.Produto;
 import br.com.fiap.cp4.repository.ProdutoRepository;
 
 @Service
@@ -35,5 +36,13 @@ public class ProdutoService {
 
     public boolean delete(Long id){
         return false;
+    }
+
+    private ProdutoResponse toResponse(Produto produto){
+        return new ProdutoResponse();
+    } 
+
+    private Produto toProduto(ProdutoRequest produtoRequest){
+        return new Produto();
     }
 }
