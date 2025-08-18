@@ -8,7 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProdutoRequest {
@@ -18,13 +19,13 @@ public class ProdutoRequest {
 
     @NotBlank
     private String tipo;
-    
+
     @NotBlank
     private String setor;
-    
+
     @NotBlank
     private String tamanho;
-    
+
     @NotNull
     @Positive
     private int preco;

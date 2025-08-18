@@ -14,18 +14,19 @@ import lombok.Setter;
 @Entity
 @Table(name = "CP4_TB_PRODUTO")
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Produto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nm_produto", nullable = false)
     private String nome;
-    
+
     @Column(name = "ds_tipo", nullable = false)
     private String tipo;
 
