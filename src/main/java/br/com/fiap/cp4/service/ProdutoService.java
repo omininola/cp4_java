@@ -70,8 +70,11 @@ public class ProdutoService {
         produtoResponse.setTamanho(produto.getTamanho());
         produtoResponse.setPreco(produto.getPreco());
 
-        if (isSelfRel) produtoResponse.add(linkTo(methodOn(ProdutoController.class).readProduto(produtoResponse.getId())).withSelfRel());
-        else produtoResponse.add(linkTo(methodOn(ProdutoController.class).readProdutos()).withRel("Lista de produtos"));
+        if (isSelfRel)
+            produtoResponse
+                    .add(linkTo(methodOn(ProdutoController.class).readProduto(produtoResponse.getId())).withSelfRel());
+        else
+            produtoResponse.add(linkTo(methodOn(ProdutoController.class).readProdutos()).withRel("Lista de produtos"));
 
         return produtoResponse;
     }

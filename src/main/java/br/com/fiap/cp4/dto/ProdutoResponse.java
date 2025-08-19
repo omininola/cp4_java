@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoResponse extends RepresentationModel<ProdutoResponse> implements Serializable{
+public class ProdutoResponse extends RepresentationModel<ProdutoResponse> implements Serializable {
     private Long id;
     private String nome;
     private String tipo;
