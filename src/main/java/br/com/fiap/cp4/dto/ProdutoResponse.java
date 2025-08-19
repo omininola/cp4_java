@@ -1,8 +1,8 @@
 package br.com.fiap.cp4.dto;
 
-import java.util.List;
+import java.io.Serializable;
 
-import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,12 +13,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoResponse {
+public class ProdutoResponse extends RepresentationModel<ProdutoResponse> implements Serializable{
     private Long id;
     private String nome;
     private String tipo;
     private String setor;
     private String tamanho;
     private int preco;
-    private List<Link> links;
 }

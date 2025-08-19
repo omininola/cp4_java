@@ -4,9 +4,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.fiap.cp4.controller.ProdutoController;
 import br.com.fiap.cp4.dto.ProdutoRequest;
 import br.com.fiap.cp4.dto.ProdutoResponse;
 import br.com.fiap.cp4.entity.Produto;
@@ -20,7 +24,7 @@ public class ProdutoService {
 
     public ProdutoResponse create(ProdutoRequest produtoRequest) {
         Produto produto = produtoRepository.save(ProdutoService.toProduto(produtoRequest));
-        return ProdutoService.toResponse(produto);
+        return ProdutoService.toResponse(produto, false);
     }
 
     public List<ProdutoResponse> readAll() {
@@ -32,7 +36,8 @@ public class ProdutoService {
         Optional<Produto> produto = produtoRepository.findById(id);
         if (produto.isEmpty())
             return Optional.empty();
-        return Optional.of(ProdutoService.toResponse(produto.get()));
+
+        return Optional.of(ProdutoService.toResponse(produto.get(), false));
     }
 
     public Optional<ProdutoResponse> update(Long id, ProdutoRequest produtoRequest) {
@@ -44,7 +49,7 @@ public class ProdutoService {
         newProduto.setId(id);
 
         produtoRepository.save(newProduto);
-        return Optional.of(ProdutoService.toResponse(newProduto));
+        return Optional.of(ProdutoService.toResponse(newProduto, false));
     }
 
     public boolean delete(Long id) {
@@ -56,7 +61,7 @@ public class ProdutoService {
         return true;
     }
 
-    private static ProdutoResponse toResponse(Produto produto) {
+    private static ProdutoResponse toResponse(Produto produto, boolean isSelfRel) {
         ProdutoResponse produtoResponse = new ProdutoResponse();
         produtoResponse.setId(produto.getId());
         produtoResponse.setNome(produto.getNome());
@@ -64,13 +69,15 @@ public class ProdutoService {
         produtoResponse.setSetor(produto.getSetor());
         produtoResponse.setTamanho(produto.getTamanho());
         produtoResponse.setPreco(produto.getPreco());
-        // produtoResponse.setLinks();
+
+        if (isSelfRel) produtoResponse.add(linkTo(methodOn(ProdutoController.class).readProduto(produtoResponse.getId())).withSelfRel());
+        else produtoResponse.add(linkTo(methodOn(ProdutoController.class).readProdutos()).withRel("Lista de produtos"));
 
         return produtoResponse;
     }
 
     private static List<ProdutoResponse> toResponse(List<Produto> produtos) {
-        return produtos.stream().map(ProdutoService::toResponse).collect(Collectors.toList());
+        return produtos.stream().map(produto -> ProdutoService.toResponse(produto, true)).collect(Collectors.toList());
     }
 
     private static Produto toProduto(ProdutoRequest produtoRequest) {
