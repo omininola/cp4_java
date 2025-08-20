@@ -57,7 +57,7 @@ public class ProdutoService {
         if (produto.isEmpty())
             return false;
 
-        produtoRepository.delete(produto.get());
+        produtoRepository.deleteById(id);
         return true;
     }
 
