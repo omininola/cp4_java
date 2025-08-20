@@ -28,7 +28,7 @@ API feita em Java para informar os produtos que nosso mercadinho possui;
 Projeto feito seguindo as boas práticas e requisições feitas, usando **Lombok**, porta da aplicação **8082**, delete pelo **id**, **HATEOAS** configurado, **deploy** feito;
 
 ### Link do deploy
-[]()
+[https://cp4-java-a2mr.onrender.com](https://cp4-java-a2mr.onrender.com)
 
 ### Tecnologias
 - Java 17+
@@ -58,7 +58,7 @@ cd cp4_java
 
 ## Rotas
 
-[POST /mercado]()
+POST /mercado
 - Descrição: Cria um novo produto no mercadinho
 - Status: 200
 - Body:
@@ -72,15 +72,15 @@ cd cp4_java
 }
 ```
 
-[GET /mercado]()
+[GET /mercado](https://cp4-java-a2mr.onrender.com/mercado)
 - Descrição: Retorna todos os produtos do mercadinhos
 - Status: 200
 
-[GET /mercado/{id}]()
+[GET /mercado/{id}](https://cp4-java-a2mr.onrender.com/mercado/3)
 - Descrição: Retorna o produto referente ao ID passado na URL
 - Status: 200, 404
 
-[PUT /mercado/{id}]()
+PUT /mercado/{id}
 - Descrição: Atualiza o produto referente ao ID passado na URL
 - Status: 200, 404
 - Body:
@@ -94,6 +94,6 @@ cd cp4_java
 }
 ```
 
-[DELETE /mercado/{id}]()
+DELETE /mercado/{id}
 - Descrição: Deleta o produto referente ao ID passado na URL
 - Status: 201, 404
