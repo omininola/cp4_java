@@ -60,7 +60,7 @@ cd cp4_java
 
 POST /mercado
 - Descrição: Cria um novo produto no mercadinho
-- Status: 200
+- Status: 201
 - Body:
 ```json
 {
@@ -96,4 +96,4 @@ PUT /mercado/{id}
 
 DELETE /mercado/{id}
 - Descrição: Deleta o produto referente ao ID passado na URL
-- Status: 201, 404
+- Status: 204, 404
