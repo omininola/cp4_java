@@ -1,0 +1,46 @@
+services:
+  java_api:
+    container_name: java_api
+    build:
+      context: .
+    depends_on:
+      db_mysql:
+        condition: service_healthy
+    restart: always
+    environment:
+      MYSQL_HOST: db_mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: mercadinho
+      MYSQL_USER: mercadinho
+      MYSQL_PASS: mercadinho
+    ports:
+      - "8082:8082"
+    networks:
+      - backtier
+
+  db_mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mercadinho
+      MYSQL_DATABASE: mercadinho
+      MYSQL_USER: mercadinho
+      MYSQL_PASSWORD: mercadinho
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p mercadinho"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s 
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_mysql:/var/lib/mysql
+    networks:
+      - backtier
+
+volumes:
+  db_mysql:
+
+networks:
+  backtier:

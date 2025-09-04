@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: cp4
+
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:mercadinho}
+    username: ${MYSQL_USER:mercadinho}
+    password: ${MYSQL_PASS:mercadinho}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8082
